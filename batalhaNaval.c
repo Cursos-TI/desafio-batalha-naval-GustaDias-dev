@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #define TAMANHO_TABULEIRO 10
-
+//Tabuleiro
 void exibirTabuleiro(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO]){
         printf("Tabuleiro: \n");
         for (int i = 0; i < TAMANHO_TABULEIRO; i++){
@@ -11,7 +11,34 @@ void exibirTabuleiro(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO]){
             printf("\n");
         }
     }
+void aplicarCruz(int tabuleiro [TAMANHO_TABULEIRO][TAMANHO_TABULEIRO]){
+    for (int i = 1; i <=3; i++){
+        for (int j = 0; j <= 4; j++){
+            tabuleiro [2][j] = 1;
+        }
+        tabuleiro [i][2] = 1;
+    }
 
+}
+void aplicarOctaedro(int tabuleiro [TAMANHO_TABULEIRO][TAMANHO_TABULEIRO]){
+    for (int i = 1; i <=3; i++){
+        for (int j = 6; j <= 8; j++){
+            tabuleiro [2][j] = 1;
+        }
+        tabuleiro [i][7] = 1;
+    }
+}
+void aplicarCone(int tabuleiro [TAMANHO_TABULEIRO][TAMANHO_TABULEIRO]){
+    for(int i = 3; i <= 7; i++){
+        for (int j = 4; j <= 6; j++){
+            for (int k = 5; k <= 5; k++){
+                tabuleiro [7][k] = 1;
+            }
+            tabuleiro [8][j] = 1;
+        }
+        tabuleiro [9][i] = 1;
+    }
+}
 
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
@@ -41,7 +68,7 @@ int main() {
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
     // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
 
-    int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO] = {0}; //Vertical (coluna 2,linha 1 a 4)
+    /*int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO] = {0}; //Vertical (coluna 2,linha 1 a 4)
     for (int i = 1; i <= 4; i++){
         tabuleiro[i][2] = 3;
     }
@@ -54,7 +81,7 @@ int main() {
     for (int i = 1, j = 8; i <= 4; i++, j--){ //Diagonal (1,8 a 4,5)
         tabuleiro [i][j] = 3;
     }
-    exibirTabuleiro(tabuleiro);
+    exibirTabuleiro(tabuleiro);*/
 
 
 
@@ -63,7 +90,13 @@ int main() {
     // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
     // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
     // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
+    int tabuleiro [TAMANHO_TABULEIRO][TAMANHO_TABULEIRO] = {0};
+    
+    aplicarCone(tabuleiro);
+    aplicarCruz(tabuleiro);
+    aplicarOctaedro(tabuleiro);
+    exibirTabuleiro(tabuleiro);
+    
     // Exemplos de exibição das habilidades:
     // Exemplo para habilidade em cone:
     // 0 0 1 0 0
